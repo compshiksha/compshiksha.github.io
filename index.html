@@ -417,6 +417,34 @@
     transition:opacity .2s ease, transform .2s ease;
   }
   .wa-float:hover .wa-tooltip{opacity:1;transform:translateX(0);}
+
+  /* ---------- GALLERY ---------- */
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+@media(max-width:900px){
+  .gallery-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:640px){
+  .gallery-grid{grid-template-columns:1fr;}
+}
+.gallery-item{
+  overflow:hidden;
+  border-radius:18px;
+  background:var(--surface);
+  box-shadow:7px 7px 16px var(--shadow-dark), -7px -7px 16px var(--shadow-light);
+}
+.gallery-item img{
+  width:100%;
+  height:260px;
+  object-fit:cover;
+  transition:transform .35s ease;
+}
+.gallery-item:hover img{
+  transform:scale(1.05);
+}
 </style>
 </head>
 <body>
@@ -431,6 +459,7 @@
       <div class="nav-links" id="navLinks">
         <a href="#courses">Courses</a>
         <a href="#path">Learning Path</a>
+        <a href="#gallery">Gallery</a>
         <a href="#why">Why Us</a>
         <a href="#contact">Contact</a>
         <a href="#contact" class="nav-cta">Book Free Demo</a>
@@ -562,6 +591,53 @@
           <h3>Microsoft Azure</h3>
           <p>Azure identity, storage, virtual networks and compute resources, mapped to the AZ-104 exam objectives.</p>
           <div class="course-meta"><span>2.5 Months</span><a href="#contact">Enquire →</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-tag">/// Gallery</span>
+        <h2>Inside Compshiksha InfoTech</h2>
+        <p>Take a look at our classrooms, networking labs, hardware workshops and student activities.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="images/image-1.jpeg" alt="Networking Lab">
+        </div>
+        <div class="gallery-item">
+          <img src="images/image-2.jpeg" alt="Hardware Training">
+        </div>
+        <div class="gallery-item">
+          <img src="images/image-3.jpeg" alt="Students in Class">
+        </div>
+        <div class="gallery-item">
+          <img src="images/image-4.jpeg" alt="Cloud Computing Session">
+        </div>
+        <div class="gallery-item">
+          <img src="images/image-5.jpeg" alt="Computer Hardware Lab">
+        </div>
+        <div class="gallery-item">
+          <img src="images/image-6.jpeg" alt="Certification Ceremony">
+        </div>
+        <div class="gallery-item">
+          <img src="images/image-7.jpeg" alt="Certification Ceremony">
+        </div>
+        <div class="gallery-item">
+          <img src="images/image-8.jpeg" alt="Certification Ceremony">
+        </div>
+        <div class="gallery-item">
+          <img src="images/image-9.jpeg" alt="Certification Ceremony">
+        </div>
+        <div class="gallery-item">
+          <img src="images/image-10.jpeg" alt="Certification Ceremony">
+        </div>
+        <div class="gallery-item">
+          <img src="images/image-11.jpeg" alt="Certification Ceremony">
         </div>
       </div>
     </div>
