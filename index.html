@@ -3,39 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script>
-  /* SUPPORT HOST SWITCH
-     On support.compshiksha.com (or any "support." hostname, or ?view=support for testing),
-     this page loads it-support.html and shows it in place, keeping the address bar unchanged. */
-  (function () {
-    var TRAINING_URL = 'https://training.compshiksha.com/';
-    var host = location.hostname.toLowerCase();
-    var forced = new URLSearchParams(location.search).get('view') === 'itsupport';
-    if (host.indexOf('support.') !== 0 && !forced) return;
-
-    var root = document.documentElement;
-    root.style.visibility = 'hidden';            // avoid a flash of the training page
-
-    fetch('it-support.html', { cache: 'no-cache' })
-      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
-      .then(function (html) {
-        // links back to the training site must leave this host, not reload this page
-        html = html.replace('<a href="index.html#top" class="logo">', '<a href="#top" class="logo">')
-                   .split('index.html#').join(TRAINING_URL + '#');
-        document.open();
-        document.write(html);
-        document.close();
-        if (location.hash) {                     // restore deep links like /#services
-          setTimeout(function () {
-            var el = document.getElementById(location.hash.slice(1));
-            if (el) el.scrollIntoView();
-          }, 50);
-        }
-      })
-      .catch(function () { root.style.visibility = ''; });   // fall back to the training page
-  })();
-</script>
-<title>Compshiksha InfoTech — Hardware, Networking & Cloud Training</title>
+<title>IT Support & Device Solutions — Compshiksha InfoTech</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -462,6 +430,16 @@
   .gallery-item:hover img{
     transform:scale(1.05);
   }
+
+
+  /* ---------- SERVICE ICON BADGE (IT Support page) ---------- */
+  .svc-icon{
+    width:44px;height:44px;border-radius:12px;
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:16px;
+    box-shadow:inset 3px 3px 7px var(--shadow-dark), inset -3px -3px 7px var(--shadow-light);
+  }
+  .svc-icon svg{width:22px;height:22px;color:var(--copper-bright);}
 </style>
 </head>
 <body>
@@ -469,18 +447,18 @@
 <header>
   <div class="nav-shell">
     <nav>
-      <a href="#top" class="logo">
+      <a href="index.html#top" class="logo">
         <span class="term-dots"><span class="red"></span><span class="yellow"></span><span class="green"></span></span>
-        <span class="prompt-brand">compshiksha<span class="at">@</span><span class="host">infotech</span><span class="sep">:~$</span><span class="cursor"></span></span>
+        <span class="prompt-brand">compshiksha<span class="at">@</span><span class="host">infotech</span><span class="sep">:~$</span> it-support<span class="cursor"></span></span>
       </a>
       <div class="nav-links" id="navLinks">
-        <a href="#courses">Courses</a>
-        <a href="#path">Learning Path</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#why">Why Us</a>
-        <a href="it-support.html">IT Support</a>
+        <a href="index.html#top">Home</a>
+        <a href="index.html#courses">Courses</a>
+        <a href="#services">Services</a>
+        <a href="#workshop">Workshop</a>
+        <a href="#process">How It Works</a>
         <a href="#contact">Contact</a>
-        <a href="#contact" class="nav-cta">Book Free Demo</a>
+        <a href="#contact" class="nav-cta">Get a Quote</a>
       </div>
       <div class="nav-controls">
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
@@ -504,35 +482,34 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <span class="eyebrow"><span class="dot"></span>Admissions open — Pune Batch, August 2026</span>
-        <h1>Learn the hardware, the network,<br> and the <span>cloud</span> behind every system.</h1>
-        <p class="lead">Hands-on training in computer hardware, networking, Linux administration, ethical hacking and cloud platforms — taught on real racks, real routers, and real cloud consoles, not slides.</p>
+        <span class="eyebrow"><span class="dot"></span>On-site &amp; remote support — Alandi Devachi, Pune and nearby</span>
+        <h1>IT support for every device,<br> from purchase to <span>production</span>.</h1>
+        <p class="lead">Buying a new machine, fixing a broken one, or wiring up an office network — our engineers handle procurement, troubleshooting and infrastructure so you don't have to.</p>
         <div class="hero-actions">
-          <a href="#courses" class="btn-primary">Explore Courses →</a>
-          <a href="#contact" class="btn-ghost">Talk to a Counsellor</a>
+          <a href="#services" class="btn-primary">View Services →</a>
+          <a href="#contact" class="btn-ghost">Request a Callback</a>
         </div>
         <div class="hero-stats">
-          <div><strong>9</strong><span>CERTIFICATION TRACKS</span></div>
-          <div><strong>2,400+</strong><span>STUDENTS TRAINED</span></div>
-          <div><strong>92%</strong><span>PLACEMENT RATE</span></div>
+          <div><strong>6</strong><span>SERVICE CATEGORIES</span></div>
+          <div><strong>500+</strong><span>DEVICES SERVICED</span></div>
+          <div><strong>24/7</strong><span>REMOTE SUPPORT</span></div>
         </div>
       </div>
 
       <div class="terminal">
         <div class="terminal-bar">
           <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-          <span class="terminal-title">enroll.sh — compshiksha</span>
+          <span class="terminal-title">support.sh — compshiksha</span>
         </div>
         <div class="terminal-body">
-          <div class="ln"><span class="usr">visitor@compshiksha</span><span class="sep">:~$</span> whoami</div>
-          <div class="ln out">&gt; future_network_engineer</div>
+          <div class="ln"><span class="usr">client@compshiksha</span><span class="sep">:~$</span> ./diagnose.sh --device=workstation-07</div>
+          <div class="ln out">&gt; scanning hardware... RAM ok, disk 92% healthy</div>
           <div class="ln">&nbsp;</div>
-          <div class="ln"><span class="usr">visitor@compshiksha</span><span class="sep">:~$</span> ls <span class="path">./courses</span></div>
-          <div class="ln out">hardware-networking&nbsp;&nbsp;ccna&nbsp;&nbsp;rhel&nbsp;&nbsp;centos</div>
-          <div class="ln out">ubuntu&nbsp;&nbsp;ethical-hacking&nbsp;&nbsp;cloud-computing&nbsp;&nbsp;aws&nbsp;&nbsp;azure</div>
-          <div class="ln"><span class="usr">visitor@compshiksha</span><span class="sep">:~$</span> ./<span class="path">enroll.sh</span> --batch=pune-aug-2026</div>
-          <div class="ln out">Admissions open · 15 seats/batch · loading brochure... done ✓</div>
-          <div class="ln"><span class="usr">visitor@compshiksha</span><span class="sep">:~$</span> <span class="term-cursor"></span></div>
+          <div class="ln"><span class="usr">client@compshiksha</span><span class="sep">:~$</span> request <span class="path">--service=lan-setup</span></div>
+          <div class="ln out">Ticket #IT-2026-0417 created · engineer assigned</div>
+          <div class="ln"><span class="usr">client@compshiksha</span><span class="sep">:~$</span> status</div>
+          <div class="ln out">On-site visit scheduled · ETA 24 hrs ✓</div>
+          <div class="ln"><span class="usr">client@compshiksha</span><span class="sep">:~$</span> <span class="term-cursor"></span></div>
         </div>
       </div>
     </div>
@@ -541,191 +518,142 @@
   <!-- STRIP -->
   <div class="strip">
     <div class="strip-track">
-      <span class="chip">CCNA 200-301</span><span class="chip">RHEL EX200</span><span class="chip">CENTOS ADMIN</span><span class="chip">UBUNTU SERVER</span><span class="chip">ETHICAL HACKING</span><span class="chip">AWS SOLUTIONS ARCHITECT</span><span class="chip">MICROSOFT AZURE AZ-104</span><span class="chip">COMPUTER HARDWARE &amp; NETWORKING</span>
-      <span class="chip">CCNA 200-301</span><span class="chip">RHEL EX200</span><span class="chip">CENTOS ADMIN</span><span class="chip">UBUNTU SERVER</span><span class="chip">ETHICAL HACKING</span><span class="chip">AWS SOLUTIONS ARCHITECT</span><span class="chip">MICROSOFT AZURE AZ-104</span><span class="chip">COMPUTER HARDWARE &amp; NETWORKING</span>
+      <span class="chip">NEW PC PROCUREMENT</span><span class="chip">LAPTOP PURCHASE</span><span class="chip">HARDWARE TROUBLESHOOTING</span><span class="chip">ONSITE &amp; REMOTE IT SUPPORT</span><span class="chip">LAN / WAN SETUP</span><span class="chip">SERVER &amp; WORKSTATION BUILDS</span>
+      <span class="chip">NEW PC PROCUREMENT</span><span class="chip">LAPTOP PURCHASE</span><span class="chip">HARDWARE TROUBLESHOOTING</span><span class="chip">ONSITE &amp; REMOTE IT SUPPORT</span><span class="chip">LAN / WAN SETUP</span><span class="chip">SERVER &amp; WORKSTATION BUILDS</span>
     </div>
   </div>
 
-  <!-- COURSES -->
-  <section id="courses">
+  <!-- SERVICES -->
+  <section id="services">
     <div class="wrap">
       <div class="section-head">
-        <span class="section-tag">/// Course Catalogue</span>
-        <h2>Nine tracks, one workshop floor.</h2>
-        <p>Every course runs on physical machines and live cloud accounts — from cracking open a cabinet to configuring a VPC.</p>
+        <span class="section-tag">/// Service Catalogue</span>
+        <h2>Six ways we keep your machines running.</h2>
+        <p>From a single laptop purchase to a full office network build, our engineers handle it end to end.</p>
       </div>
 
       <div class="course-grid">
+
         <div class="course-card">
-          <span class="course-code">HN-101</span>
-          <h3>Computer Hardware &amp; Networking</h3>
-          <p>Assembling and troubleshooting PCs, motherboards, storage and peripherals, plus structured cabling and LAN setup.</p>
-          <div class="course-meta"><span>3 Months</span><a href="#contact">Enquire →</a></div>
+          <div class="svc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <span class="course-code">PROC-NEW01</span>
+          <h3>New Computer Purchase</h3>
+          <p>Budget-based desktop recommendations, component comparisons, warranty guidance and full setup once delivered.</p>
+          <div class="course-meta"><span>Consult + Delivery</span><a href="#contact">Enquire →</a></div>
         </div>
+
         <div class="course-card">
-          <span class="course-code">CCNA-200-301</span>
-          <h3>CCNA — Cisco Certified Network Associate</h3>
-          <p>Routing, switching, VLANs, OSPF and network security fundamentals on real Cisco gear and Packet Tracer labs.</p>
-          <div class="course-meta"><span>4 Months</span><a href="#contact">Enquire →</a></div>
+          <div class="svc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="12" rx="1.5"/><path d="M2 19h20l-2-4H4l-2 4z"/></svg>
+          </div>
+          <span class="course-code">PROC-LAP02</span>
+          <h3>Laptop Purchase</h3>
+          <p>Options compared across student, business, and performance use-cases, with buying assistance and configuration.</p>
+          <div class="course-meta"><span>Consult + Delivery</span><a href="#contact">Enquire →</a></div>
         </div>
+
         <div class="course-card">
-          <span class="course-code">RHEL-EX200</span>
-          <h3>RHEL — Red Hat Enterprise Linux</h3>
-          <p>System administration, shell scripting, user and storage management, preparing you for the RHCSA exam.</p>
-          <div class="course-meta"><span>2.5 Months</span><a href="#contact">Enquire →</a></div>
+          <div class="svc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4L12 3z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15z"/></svg>
+          </div>
+          <span class="course-code">SUP-TRB03</span>
+          <h3>Troubleshooting</h3>
+          <p>Hardware and software diagnostics, virus removal, OS repair and performance tuning — onsite or remote.</p>
+          <div class="course-meta"><span>Same/Next Day</span><a href="#contact">Enquire →</a></div>
         </div>
+
         <div class="course-card">
-          <span class="course-code">CENTOS-201</span>
-          <h3>CentOS Server Administration</h3>
-          <p>Package management, service configuration, firewall and web/mail server deployment on CentOS environments.</p>
-          <div class="course-meta"><span>2 Months</span><a href="#contact">Enquire →</a></div>
+          <div class="svc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+          </div>
+          <span class="course-code">SUP-GEN04</span>
+          <h3>IT Support (AMC &amp; Helpdesk)</h3>
+          <p>Annual maintenance contracts, onsite/remote support and preventive maintenance for small offices and businesses.</p>
+          <div class="course-meta"><span>Monthly / AMC</span><a href="#contact">Enquire →</a></div>
         </div>
+
         <div class="course-card">
-          <span class="course-code">UBT-301</span>
-          <h3>Ubuntu Server Administration</h3>
-          <p>Installing, securing and maintaining Ubuntu servers — networking, containers and automated deployments.</p>
-          <div class="course-meta"><span>2 Months</span><a href="#contact">Enquire →</a></div>
+          <div class="svc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="10" width="18" height="6" rx="1.5"/><circle cx="7" cy="13" r="0.8" fill="currentColor" stroke="none"/><circle cx="10.5" cy="13" r="0.8" fill="currentColor" stroke="none"/><path d="M7 4v6M17 4v6"/></svg>
+          </div>
+          <span class="course-code">NET-LW05</span>
+          <h3>LAN / WAN Technology</h3>
+          <p>Structured cabling, LAN setup, WAN/VPN connectivity, router &amp; switch configuration and network security.</p>
+          <div class="course-meta"><span>Site Survey First</span><a href="#contact">Enquire →</a></div>
         </div>
+
         <div class="course-card">
-          <span class="course-code">EH-401</span>
-          <h3>Ethical Hacking</h3>
-          <p>Reconnaissance, vulnerability scanning, penetration testing and network defence in a legal lab environment.</p>
-          <div class="course-meta"><span>3 Months</span><a href="#contact">Enquire →</a></div>
+          <div class="svc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="7" rx="1.5"/><rect x="5" y="15" width="14" height="7" rx="1.5"/><circle cx="8.5" cy="5.5" r="0.8" fill="currentColor" stroke="none"/><circle cx="8.5" cy="18.5" r="0.8" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <span class="course-code">INFRA-SRV06</span>
+          <h3>Server, Workstation &amp; High-End Computing</h3>
+          <p>Server installation, high-performance workstation builds for CAD/rendering/dev work, plus RAID &amp; backup setup.</p>
+          <div class="course-meta"><span>Custom Build</span><a href="#contact">Enquire →</a></div>
         </div>
-        <div class="course-card">
-          <span class="course-code">CC-101</span>
-          <h3>Cloud Computing Fundamentals</h3>
-          <p>Core concepts of virtualization, IaaS/PaaS/SaaS, and multi-cloud architecture before specialising further.</p>
-          <div class="course-meta"><span>1.5 Months</span><a href="#contact">Enquire →</a></div>
-        </div>
-        <div class="course-card">
-          <span class="course-code">AWS-SAA</span>
-          <h3>AWS — Amazon Web Services</h3>
-          <p>EC2, S3, VPC, IAM and architecting for the AWS Solutions Architect Associate certification.</p>
-          <div class="course-meta"><span>2.5 Months</span><a href="#contact">Enquire →</a></div>
-        </div>
-        <div class="course-card">
-          <span class="course-code">AZ-104</span>
-          <h3>Microsoft Azure</h3>
-          <p>Azure identity, storage, virtual networks and compute resources, mapped to the AZ-104 exam objectives.</p>
-          <div class="course-meta"><span>2.5 Months</span><a href="#contact">Enquire →</a></div>
-        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- GALLERY -->
-  <section id="gallery">
+  <!-- WORKSHOP / SUPPORT PHOTOS -->
+  <section id="workshop">
     <div class="wrap">
       <div class="section-head">
-        <span class="section-tag">/// Gallery</span>
-        <h2>Inside Compshiksha InfoTech</h2>
-        <p>Take a look at our classrooms, networking labs, hardware workshops and student activities.</p>
+        <span class="section-tag">/// Our Workshop</span>
+        <h2>Where your devices get diagnosed and fixed.</h2>
+        <p>A look at our service bench, the machines we work on, and the Compshiksha InfoTech office at Alandi Devachi.</p>
       </div>
 
       <div class="gallery-grid">
         <div class="gallery-item">
-          <img src="images/image-1.jpeg" alt="Networking Lab">
+          <img src="images/support-1.jpeg" alt="Service bench with monitors and a laptop under repair" loading="lazy">
         </div>
         <div class="gallery-item">
-          <img src="images/image-2.jpeg" alt="Hardware Training">
+          <img src="images/support-2.jpeg" alt="Desktop PCs, keyboards and monitors lined up on the support bench" loading="lazy">
         </div>
         <div class="gallery-item">
-          <img src="images/image-3.jpeg" alt="Students in Class">
-        </div>
-        <div class="gallery-item">
-          <img src="images/image-4.jpeg" alt="Cloud Computing Session">
-        </div>
-        <div class="gallery-item">
-          <img src="images/image-5.jpeg" alt="Computer Hardware Lab">
-        </div>
-        <div class="gallery-item">
-          <img src="images/image-6.jpeg" alt="Certification Ceremony">
-        </div>
-        <div class="gallery-item">
-          <img src="images/image-7.jpeg" alt="Certification Ceremony">
-        </div>
-        <div class="gallery-item">
-          <img src="images/image-8.jpeg" alt="Certification Ceremony">
-        </div>
-        <div class="gallery-item">
-          <img src="images/image-9.jpeg" alt="Certification Ceremony">
-        </div>
-        <div class="gallery-item">
-          <img src="images/image-10.jpeg" alt="Certification Ceremony">
-        </div>
-        <div class="gallery-item">
-          <img src="images/image-11.jpeg" alt="Certification Ceremony">
+          <img src="images/support-4.jpeg" alt="Compshiksha InfoTech office entrance and signboard" loading="lazy" style="object-position:center 55%;">
         </div>
       </div>
     </div>
   </section>
 
-  <!-- WHY -->
-  <section id="why">
+  <!-- PROCESS -->
+  <section class="path" id="process">
     <div class="wrap">
       <div class="section-head">
-        <span class="section-tag">/// Why Compshiksha</span>
-        <h2>Built like a workshop, not a classroom.</h2>
-      </div>
-      <div class="why-grid">
-        <div class="why-card">
-          <span class="why-num">01</span>
-          <h4>Real hardware labs</h4>
-          <p>Every batch works on physical routers, switches and server racks — not simulators alone.</p>
-        </div>
-        <div class="why-card">
-          <span class="why-num">02</span>
-          <h4>Certified trainers</h4>
-          <p>Instructors hold current CCNA, RHCSA, AWS and Azure certifications and work as consultants.</p>
-        </div>
-        <div class="why-card">
-          <span class="why-num">03</span>
-          <h4>Small batch sizes</h4>
-          <p>Capped at 15 students per batch so every rack and console gets hands-on time.</p>
-        </div>
-        <div class="why-card">
-          <span class="why-num">04</span>
-          <h4>Placement support</h4>
-          <p>Resume reviews, mock interviews and direct referrals to our hiring partner network.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PATH -->
-  <section class="path" id="path">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="section-tag">/// How a batch runs</span>
-        <h2>From first boot to final certification.</h2>
+        <span class="section-tag">/// How It Works</span>
+        <h2>From request to resolution.</h2>
       </div>
       <div class="path-row">
-        <div class="path-time mono">WEEK 1</div>
+        <div class="path-time mono">STEP 1</div>
         <div class="path-body">
-          <h4>Foundations on the bench</h4>
-          <p>Assemble and diagnose a PC, terminate your first cable, and set up a working LAN by the end of week one.</p>
+          <h4>Tell us what you need</h4>
+          <p>Call, WhatsApp, or fill the form below — a new device, a breakdown, or a network you need set up.</p>
         </div>
       </div>
       <div class="path-row">
-        <div class="path-time mono">WEEK 3–8</div>
+        <div class="path-time mono">STEP 2</div>
         <div class="path-body">
-          <h4>Core track training</h4>
-          <p>Deep-dive into your chosen track — CCNA routing labs, RHEL shell administration, or cloud console work — with weekly graded labs.</p>
+          <h4>Diagnosis &amp; quote</h4>
+          <p>Our engineer assesses the requirement (remotely or via site visit) and shares a clear quote — no surprises.</p>
         </div>
       </div>
       <div class="path-row">
-        <div class="path-time mono">WEEK 9–10</div>
+        <div class="path-time mono">STEP 3</div>
         <div class="path-body">
-          <h4>Project &amp; mock exam</h4>
-          <p>Build a capstone project mirroring a real deployment, then sit a full-length mock certification exam.</p>
+          <h4>Service or delivery</h4>
+          <p>Devices are procured, configured and delivered, or the fix/installation is carried out onsite or remotely.</p>
         </div>
       </div>
       <div class="path-row">
-        <div class="path-time mono">WEEK 11+</div>
+        <div class="path-time mono">STEP 4</div>
         <div class="path-body">
-          <h4>Certification &amp; placement</h4>
-          <p>Sit your official certification exam and move into interview preparation with our placement cell.</p>
+          <h4>Support &amp; warranty</h4>
+          <p>Every job includes a follow-up check and warranty/AMC coverage where applicable.</p>
         </div>
       </div>
     </div>
@@ -735,10 +663,10 @@
   <section style="padding-top:0;">
     <div class="wrap">
       <div class="band">
-        <div class="band-cell"><strong>9</strong><span>ACTIVE TRACKS</span></div>
-        <div class="band-cell"><strong>15</strong><span>MAX BATCH SIZE</span></div>
-        <div class="band-cell"><strong>92%</strong><span>PLACEMENT RATE</span></div>
-        <div class="band-cell"><strong>10+</strong><span>YEARS TRAINING</span></div>
+        <div class="band-cell"><strong>6</strong><span>SERVICE CATEGORIES</span></div>
+        <div class="band-cell"><strong>500+</strong><span>DEVICES SERVICED</span></div>
+        <div class="band-cell"><strong>50+</strong><span>CORPORATE CLIENTS</span></div>
+        <div class="band-cell"><strong>24/7</strong><span>REMOTE SUPPORT</span></div>
       </div>
     </div>
   </section>
@@ -748,14 +676,14 @@
     <div class="wrap">
       <div class="cta-box">
         <div>
-          <span class="section-tag">/// Get Started</span>
-          <h2>Book a free demo class.</h2>
-          <p>Tell us which track you're interested in and a counsellor will call you back within one business day to confirm your seat.</p>
+          <span class="section-tag">/// Get Support</span>
+          <h2>Tell us what needs fixing, setting up, or buying.</h2>
+          <p>Share a few details and our support team will get back to you with a quote or a scheduled visit.</p>
 
           <div class="contact-info">
             <div class="ci-item"><span>Visit</span><strong>Alandi Devachi, Pune, Maharashtra 412105</strong></div>
             <div class="ci-item"><span>Call</span><strong>+91 73875 38045</strong></div>
-            <div class="ci-item"><span>Email</span><strong>vinayak.vaishnav@compshiksha.in</strong></div>
+            <div class="ci-item"><span>Email</span><strong>sales@compshiksha.in</strong></div>
             <div class="ci-item"><span>Hours</span><strong>Mon–Sat, 9:00 AM – 7:00 PM</strong></div>
           </div>
         </div>
@@ -766,17 +694,14 @@
             <input type="tel" id="fPhone" placeholder="Phone number" required>
             <input type="email" id="fEmail" placeholder="Email address">
           </div>
-          <select id="fCourse" required>
-            <option value="" disabled selected>Course you're interested in</option>
-            <option>Computer Hardware &amp; Networking</option>
-            <option>CCNA</option>
-            <option>RHEL</option>
-            <option>CentOS</option>
-            <option>Ubuntu</option>
-            <option>Ethical Hacking</option>
-            <option>Cloud Computing</option>
-            <option>AWS</option>
-            <option>Azure</option>
+          <select id="fService" required>
+            <option value="" disabled selected>Service you're interested in</option>
+            <option>New Computer Purchase</option>
+            <option>Laptop Purchase</option>
+            <option>Troubleshooting</option>
+            <option>IT Support (AMC / Helpdesk)</option>
+            <option>LAN / WAN Technology</option>
+            <option>Server, Workstation &amp; High-End Computing</option>
           </select>
           <button type="submit">Send via WhatsApp</button>
           <p style="font-size:12px;color:var(--muted-2);margin-top:2px;">This opens WhatsApp with your details pre-filled — just hit send there.</p>
@@ -792,31 +717,30 @@
     <div class="foot-grid">
       <div>
         <span class="prompt-brand" style="display:inline-flex;margin-bottom:12px;">compshiksha<span class="at">@</span><span class="host">infotech</span></span>
-        <p style="color:var(--muted);font-size:13.5px;max-width:280px;margin-top:8px;">Hardware, networking and cloud training with real labs, in Alandi Devachi, Pune.</p>
-      </div>
-      <div>
-        <h5>Courses</h5>
-        <ul>
-          <li><a href="#courses">Hardware &amp; Networking</a></li>
-          <li><a href="#courses">CCNA</a></li>
-          <li><a href="#courses">RHEL / CentOS / Ubuntu</a></li>
-          <li><a href="#courses">Ethical Hacking</a></li>
-        </ul>
+        <p style="color:var(--muted);font-size:13.5px;max-width:280px;margin-top:8px;">IT procurement, support and infrastructure services in Alandi Devachi, Pune.</p>
       </div>
       <div>
         <h5>Services</h5>
         <ul>
-          <li><a href="it-support.html">IT Support</a></li>
-          <li><a href="it-support.html#services">Device Purchase</a></li>
-          <li><a href="it-support.html#services">Troubleshooting</a></li>
-          <li><a href="it-support.html#services">LAN/WAN Setup</a></li>
+          <li><a href="#services">New Computer Purchase</a></li>
+          <li><a href="#services">Laptop Purchase</a></li>
+          <li><a href="#services">Troubleshooting</a></li>
+          <li><a href="#services">IT Support / AMC</a></li>
         </ul>
       </div>
       <div>
-        <h5>Institute</h5>
+        <h5>Infrastructure</h5>
         <ul>
-          <li><a href="#why">Why Compshiksha</a></li>
-          <li><a href="#path">Learning Path</a></li>
+          <li><a href="#services">LAN / WAN Technology</a></li>
+          <li><a href="#services">Server &amp; Workstation Builds</a></li>
+          <li><a href="#process">How It Works</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Compshiksha</h5>
+        <ul>
+          <li><a href="index.html#top">Home</a></li>
+          <li><a href="index.html#courses">Courses</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
@@ -867,7 +791,7 @@
   var WA_PHONE = "917387538045";
 
   (function(){
-    var defaultMessage = "Hi Compshiksha InfoTech! I'm interested in your hardware, networking and cloud courses. Could you share more details?";
+    var defaultMessage = "Hi Compshiksha InfoTech! I need IT support / device purchase help. Could you share more details?";
     var url = "https://wa.me/" + WA_PHONE + "?text=" + encodeURIComponent(defaultMessage);
     document.getElementById('waBtn').setAttribute('href', url);
   })();
@@ -878,15 +802,15 @@
     var name = document.getElementById('fName').value.trim();
     var phone = document.getElementById('fPhone').value.trim();
     var email = document.getElementById('fEmail').value.trim();
-    var course = document.getElementById('fCourse').value;
+    var service = document.getElementById('fService').value;
 
     var lines = [
-      "New enquiry from the Compshiksha InfoTech website:",
+      "New IT support enquiry from the Compshiksha InfoTech website:",
       "Name: " + name,
       "Phone: " + phone
     ];
     if (email) lines.push("Email: " + email);
-    lines.push("Course interested in: " + course);
+    lines.push("Service needed: " + service);
 
     var message = lines.join("\n");
     var url = "https://wa.me/" + WA_PHONE + "?text=" + encodeURIComponent(message);
