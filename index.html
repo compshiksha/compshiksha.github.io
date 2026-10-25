@@ -3,6 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  /* SUPPORT HOST SWITCH
+     On support.compshiksha.com (or any "support." hostname, or ?view=support for testing),
+     this page loads it-support.html and shows it in place, keeping the address bar unchanged. */
+  (function () {
+    var TRAINING_URL = 'https://training.compshiksha.com/';
+    var host = location.hostname.toLowerCase();
+    var forced = new URLSearchParams(location.search).get('view') === 'itsupport';
+    if (host.indexOf('support.') !== 0 && !forced) return;
+
+    var root = document.documentElement;
+    root.style.visibility = 'hidden';            // avoid a flash of the training page
+
+    fetch('it-support.html', { cache: 'no-cache' })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+      .then(function (html) {
+        // links back to the training site must leave this host, not reload this page
+        html = html.replace('<a href="index.html#top" class="logo">', '<a href="#top" class="logo">')
+                   .split('index.html#').join(TRAINING_URL + '#');
+        document.open();
+        document.write(html);
+        document.close();
+        if (location.hash) {                     // restore deep links like /#services
+          setTimeout(function () {
+            var el = document.getElementById(location.hash.slice(1));
+            if (el) el.scrollIntoView();
+          }, 50);
+        }
+      })
+      .catch(function () { root.style.visibility = ''; });   // fall back to the training page
+  })();
+</script>
 <title>Compshiksha InfoTech — Hardware, Networking & Cloud Training</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
